@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.kotlin.test"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "0.0.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // kotlin
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // androidx
+    implementation 'androidx.core:core-ktx:1.2.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
+
+    // koin
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // anko
+    implementation 'org.jetbrains.anko:anko:0.10.8'
+
+    // retrofit2
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    // rxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    // test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}

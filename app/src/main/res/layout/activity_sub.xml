@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="vm" type="com.kotlin.test.ui.vm.SubViewModel"/>
+    </data>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_margin="20dp"
+                      android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="넘어온 값 : "
+                          android:layout_marginEnd="20dp"
+                          android:textStyle="bold"
+                          android:textSize="20sp"/>
+
+                <TextView android:id="@+id/tv_txt"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="넘어온 값"
+                          android:textSize="20sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:gravity="center"
+                      android:orientation="horizontal">
+
+            <Button android:id="@+id/btn_val_change"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:onClick="@{vm::onClickEvent}"
+                    android:text="값 바꾸기"/>
+
+            <Button android:id="@+id/btn_finish"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:onClick="@{vm::onClickEvent}"
+                    android:text="종료"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
