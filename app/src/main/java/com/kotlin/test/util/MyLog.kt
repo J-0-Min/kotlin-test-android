@@ -1,6 +1,7 @@
 package com.kotlin.test.util
 
 import com.kotlin.test.BuildConfig
+import com.kotlin.test.global.Constant
 
 /**
  * KotlinTest
@@ -12,7 +13,6 @@ import com.kotlin.test.BuildConfig
 class MyLog {
 
     companion object {
-        private const val TAG = "JANG"
 
         fun e(msg: String) {
             if (!BuildConfig.DEBUG) {
@@ -36,7 +36,7 @@ class MyLog {
             buffer.append("::")
             buffer.append(stackTraceElement.lineNumber)
             buffer.append("::")
-            android.util.Log.e(TAG, buffer.toString() + msg)
+            android.util.Log.e(Constant.TAG, buffer.toString() + msg)
         }
     }
 }

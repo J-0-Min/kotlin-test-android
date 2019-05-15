@@ -54,6 +54,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun initDataBinding() {
         MyLog.e("initDataBinding()")
 
+        mViewModel.progressBarVisibility.observe(this, Observer {
+            progress_bar.visibility = it
+        })
+
         // Sub 화면으로 전환 버튼 Click
         mViewModel.clickEvent.observe(this, Observer { resId ->
             when (resId) {

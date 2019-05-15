@@ -15,10 +15,16 @@
                 android:onClick="@{vm::onClickEvent}"
                 android:text="Sub 화면으로 전환"/>
 
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/btn_move_sub"
+                android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/btn_move_sub"/>
+                android:layout_below="@+id/progress_bar"/>
     </RelativeLayout>
 </layout>

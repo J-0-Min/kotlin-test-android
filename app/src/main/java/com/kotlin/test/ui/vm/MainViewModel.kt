@@ -1,7 +1,9 @@
 package com.kotlin.test.ui.vm
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.kotlin.test._interface.Progress
 import com.kotlin.test.global.Constant
 import com.kotlin.test.network.Api
 import com.kotlin.test.network.res.CounselingUsableRes
@@ -17,7 +19,19 @@ import io.reactivex.schedulers.Schedulers
  *
  * Description : MainActivity 에 해당하는 ViewModel
  */
-class MainViewModel(private val api: Api) : BaseViewModel() {
+class MainViewModel(private val api: Api) : BaseViewModel(), Progress {
+
+    private val _progressBarVisibility = MutableLiveData<Int>()
+    val progressBarVisibility: LiveData<Int>
+        get() = _progressBarVisibility
+
+    override fun onStart() {
+        _progressBarVisibility.value = View.VISIBLE
+    }
+
+    override fun onFinish() {
+        _progressBarVisibility.value = View.GONE
+    }
 
     private val _counselingUsableResLiveData = MutableLiveData<CounselingUsableRes>()
     val counselingUsableResLiveData: LiveData<CounselingUsableRes>
@@ -28,6 +42,8 @@ class MainViewModel(private val api: Api) : BaseViewModel() {
         addDisposable(api.getUsableState(Constant.CLIENT_TOKEN)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onStart() }
+            .doAfterTerminate { onFinish() }
             .subscribe({
                 it.run {
                     if (code == 0) {

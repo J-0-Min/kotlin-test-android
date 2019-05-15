@@ -9,6 +9,8 @@ package com.kotlin.test.global
  */
 object Constant {
 
+    const val TAG = "JANG"
+
     // Retrofit Client Base URL
     const val BASE_URL = "https://appservice9.com"
 
