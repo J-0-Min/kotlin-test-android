@@ -17,16 +17,16 @@ import kotlinx.android.synthetic.main.activity_sub.*
  */
 class SubActivity : BaseActivity<ActivitySubBinding, SubViewModel>() {
 
-    override val layoutResId: Int
+    override val mLayoutResId: Int
         get() = R.layout.activity_sub
 
-    override val viewModel: SubViewModel = SubViewModel()
+    override val mViewModel: SubViewModel = SubViewModel()
 
     private lateinit var sendText: String
 
     // xml 에서 정의해준 ViewModel (vm) 에 해당 viewModel 연결
     override fun setVM() {
-        binding.vm = viewModel
+        mBinding.vm = mViewModel
     }
 
     override fun initStartView() {
@@ -40,7 +40,7 @@ class SubActivity : BaseActivity<ActivitySubBinding, SubViewModel>() {
     }
 
     override fun initDataBinding() {
-        viewModel.clickEvent.observe(this, Observer { resId ->
+        mViewModel.clickEvent.observe(this, Observer { resId ->
             when(resId) {
                 btn_val_change.id -> {
                     // 값 바꾸기 버튼 클릭

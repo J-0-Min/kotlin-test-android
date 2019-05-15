@@ -1,6 +1,6 @@
 package com.kotlin.test.util
 
-import com.kotlin.test.app.MyApplication.Companion.IS_DEBUG
+import com.kotlin.test.BuildConfig
 
 /**
  * KotlinTest
@@ -15,7 +15,7 @@ class MyLog {
         private const val TAG = "JANG"
 
         fun e(msg: String) {
-            if (!IS_DEBUG) {
+            if (!BuildConfig.DEBUG) {
                 return
             }
 

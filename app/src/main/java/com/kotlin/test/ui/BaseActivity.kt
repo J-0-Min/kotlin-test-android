@@ -16,11 +16,11 @@ import java.lang.Exception
  */
 abstract class BaseActivity<VDB : ViewDataBinding, BVM : BaseViewModel> : AppCompatActivity() {
 
-    val binding: VDB by lazy { DataBindingUtil.setContentView(this, layoutResId) as VDB }
+    abstract val mLayoutResId: Int
 
-    abstract val layoutResId: Int
+    abstract val mViewModel: BVM
 
-    abstract val viewModel: BVM
+    val mBinding: VDB by lazy { DataBindingUtil.setContentView(this, mLayoutResId) as VDB }
 
     /**
      * xml 에 정의한 <data> ViewModel 과

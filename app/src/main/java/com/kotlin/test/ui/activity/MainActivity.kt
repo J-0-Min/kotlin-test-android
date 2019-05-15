@@ -13,8 +13,8 @@ import com.kotlin.test.util.MyLog
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
-import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * KotlinTest
@@ -25,18 +25,18 @@ import org.koin.android.ext.android.inject
  */
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    override val layoutResId: Int
+    override val mLayoutResId: Int
         get() = R.layout.activity_main
 
     // MainViewModel Constructor (Api Class) - MyModule 에서 RetrofitPart 셋팅
-    override val viewModel: MainViewModel = MainViewModel(get())
+    override val mViewModel: MainViewModel by viewModel()
 
     // RecyclerView 해당하는 Adapter - MyModule 에서 AdapterPart 셋팅
     private val mainAdapter: MainAdapter by inject()
 
     // xml 에서 정의해준 ViewModel (vm) 에 해당 viewModel 연결
     override fun setVM() {
-        binding.vm = viewModel
+        mBinding.vm = mViewModel
     }
 
     override fun initStartView() {
@@ -55,7 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         MyLog.e("initDataBinding()")
 
         // Sub 화면으로 전환 버튼 Click
-        viewModel.clickEvent.observe(this, Observer { resId ->
+        mViewModel.clickEvent.observe(this, Observer { resId ->
             when (resId) {
                 btn_move_sub.id -> {
                     // Sub 화면으로 전환
@@ -67,7 +67,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         })
 
         // 카카오톡 상담 가능 Response LiveData Observe Binding
-        viewModel.counselingUsableResLiveData.observe(this, Observer {
+        mViewModel.counselingUsableResLiveData.observe(this, Observer {
             MyLog.e(it.data.toString())
 
             mainAdapter.addItem(MainAdapter.DataItem("1"))
@@ -84,7 +84,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun initAfterBinding() {
 
         // 카카오톡 상담 가능 통신
-        viewModel.getUsableCounseling()
+        mViewModel.getUsableCounseling()
 
     }
 }

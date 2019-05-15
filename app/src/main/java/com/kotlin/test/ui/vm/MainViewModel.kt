@@ -47,21 +47,4 @@ class MainViewModel(private val api: Api) : BaseViewModel() {
             })
         )
     }
-
-    /**
-     * SubActivity 로 전환
-     *  -> _startSubActivityEvent 에 startActivity() Binding 해두고
-     *     startSubActivity() 이용하여 call
-     *
-     * ps) BaseActivity 로 move2Activity() 뽑아내는 것이 맞을지
-     * 이동할 Activity 마다 매번 만들어줘야하는지 이 부분은 고민이 필요
-     */
-//    private val _startSubActivityEvent = SingleLiveEvent<Any>()
-//    val startSubActivityEvent: LiveData<Any>
-//        get() = _startSubActivityEvent
-//
-//
-//    fun startSubActivity() {
-//        _startSubActivityEvent.call()
-//    }
 }
