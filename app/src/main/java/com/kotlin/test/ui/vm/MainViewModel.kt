@@ -25,10 +25,12 @@ class MainViewModel(private val api: Api) : BaseViewModel(), Progress {
     val progressBarVisibility: LiveData<Int>
         get() = _progressBarVisibility
 
+    // ProgressBar Show
     override fun onStart() {
         _progressBarVisibility.value = View.VISIBLE
     }
 
+    // ProgressBar Hide
     override fun onFinish() {
         _progressBarVisibility.value = View.GONE
     }

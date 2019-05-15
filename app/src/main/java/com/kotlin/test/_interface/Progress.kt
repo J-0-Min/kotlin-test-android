@@ -5,7 +5,7 @@ package com.kotlin.test._interface
  * Class : Progress
  * Created by jang on 2019-05-15
  *
- * Description :
+ * Description : ProgressBar Show/Hide
  */
 interface Progress {
 
